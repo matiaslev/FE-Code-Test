@@ -1,4 +1,8 @@
 package com.granitosdearena.matiaslev.cocktails.data.model
 
-class CocktailPreviewData {
-}
+data class CocktailPreviewDataList(val drinks: List<CocktailPreviewData>)
+
+data class CocktailPreviewData(
+    var strDrink: String,
+    var strDrinkThumb: String,
+    var idDrink: String)

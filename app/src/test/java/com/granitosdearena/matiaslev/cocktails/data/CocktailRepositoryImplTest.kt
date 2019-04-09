@@ -11,15 +11,26 @@ class CocktailRepositoryImplTest {
     val cocktailsApi = mockk<CocktailsApi>(relaxed = true)
     val repositoryUnderTest = CocktailsRepositoryImpl(cocktailsApi)
 
+
+    // getCockailsPreview
+
     @Test
-    fun `getCockailsPreview should return an observable with the current data in the database`() {
-        // val repositoryResponse = repositoryUnderTest.getCockailsPreview()
-        assertEquals(true, false) // TODO: Not yet
+    fun `getCockailsPreview should call the getCockailsPreview api`() {
+        repositoryUnderTest.getCockailsPreview()
+        verify { cocktailsApi.getCockailsPreview() }
     }
 
     @Test
-    fun `getCockailsPreview should call the api for update the previews from the database`() {
-        repositoryUnderTest.getCockailsPreview()
-        verify { cocktailsApi.getCockailsPreview() }
+    fun `getCockailsPreview should save the data returned by the api`() {
+        //repositoryUnderTest.saveCocktailsPreview()
+        //verify { roomDatabase.saveCocktailsPreview() }
+    }
+
+    // getCocktail
+
+    @Test
+    fun `getCocktail should call the getCocktail api`() {
+        repositoryUnderTest.getCocktail("1")
+        verify { cocktailsApi.getCocktail("1") }
     }
 }

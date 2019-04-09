@@ -1,5 +1,7 @@
 package com.granitosdearena.matiaslev.cocktails
 
+import com.granitosdearena.matiaslev.cocktails.data.model.CocktailPreviewData
+import com.granitosdearena.matiaslev.cocktails.data.model.CocktailPreviewDataList
 import com.granitosdearena.matiaslev.cocktails.domain.Cocktail
 import com.granitosdearena.matiaslev.cocktails.domain.CocktailPreview
 
@@ -20,4 +22,16 @@ object CocktailFactory {
     )
 
     fun newCocktailPreview() = CocktailPreview(name, thumb, id)
+
+    fun newCocktailPreviewDataClass() = CocktailPreviewDataList(newCocktailPreviewDataList())
+
+    fun newCocktailPreviewDataList() = listOf(
+        newCocktailPreviewData(),
+        newCocktailPreviewData(),
+        newCocktailPreviewData(),
+        newCocktailPreviewData()
+    )
+
+    fun newCocktailPreviewData() = CocktailPreviewData(name, thumb, id)
+
 }
