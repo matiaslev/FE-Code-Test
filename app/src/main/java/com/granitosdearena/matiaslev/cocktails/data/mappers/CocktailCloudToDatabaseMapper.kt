@@ -2,7 +2,6 @@ package com.granitosdearena.matiaslev.cocktails.data.mappers
 
 import com.granitosdearena.matiaslev.cocktails.data.cloud.model.CocktailCloud
 import com.granitosdearena.matiaslev.cocktails.data.database.model.CocktailDatabase
-import com.granitosdearena.matiaslev.cocktails.domain.Cocktail
 
 class CocktailCloudToDatabaseMapper: BaseMapper<CocktailCloud, CocktailDatabase> {
 

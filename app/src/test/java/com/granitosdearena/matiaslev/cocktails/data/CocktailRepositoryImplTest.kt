@@ -28,7 +28,7 @@ class CocktailRepositoryImplTest {
         val apiResponse = Observable.just(CocktailFactory.newCocktailPreviewCloudClass())
         every { cocktailsApi.getCockailsPreview() } returns apiResponse
         val procesedApiResponse = apiResponse.map { CocktailPreviewCloudToDatabaseMapper().transform(it) }
-        procesedApiResponse.map { verify { database.cocktailPreviewDao().insertAll(it) } }
+        procesedApiResponse.map { verify { database.cocktailPreviewDao().insertOrReplaceAll(it) } }
 
     }
 

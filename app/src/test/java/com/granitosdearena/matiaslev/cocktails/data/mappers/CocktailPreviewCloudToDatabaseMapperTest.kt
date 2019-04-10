@@ -1,9 +1,8 @@
-package com.granitosdearena.matiaslev.cocktails.data.cloud.model
+package com.granitosdearena.matiaslev.cocktails.data.mappers
 
 import com.granitosdearena.matiaslev.cocktails.CocktailFactory
+import com.granitosdearena.matiaslev.cocktails.data.cloud.model.CocktailPreviewCloudList
 import com.granitosdearena.matiaslev.cocktails.data.database.model.CocktailPreviewDatabase
-import com.granitosdearena.matiaslev.cocktails.data.mappers.CocktailPreviewCloudToDatabaseMapper
-import com.granitosdearena.matiaslev.cocktails.domain.CocktailPreview
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

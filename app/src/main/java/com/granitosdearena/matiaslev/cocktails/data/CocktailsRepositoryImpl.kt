@@ -8,7 +8,7 @@ import com.granitosdearena.matiaslev.cocktails.data.mappers.ToCocktailPreviewFro
 import com.granitosdearena.matiaslev.cocktails.domain.Cocktail
 import com.granitosdearena.matiaslev.cocktails.domain.CocktailPreview
 import com.granitosdearena.matiaslev.cocktails.domain.CocktailsRepository
-import com.granitosdearena.matiaslev.cocktails.presentation.CocktailpreviewViewModel
+import com.granitosdearena.matiaslev.cocktails.presentation.CocktailPreviewViewModel
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 
@@ -17,8 +17,8 @@ class CocktailsRepositoryImpl(val cocktailsApi: CocktailsApi, val database: AppD
     override fun syncCockailsPreview(): Observable<List<CocktailPreview>> {
         cocktailsApi.getCockailsPreview()
             .subscribeOn(Schedulers.io())
-            .doOnError { Log.d(CocktailpreviewViewModel::class.java.canonicalName, it.message) }
-            .map { database.cocktailPreviewDao().insertAll(CocktailPreviewCloudToDatabaseMapper().transform(it)) }
+            .doOnError { Log.d(CocktailPreviewViewModel::class.java.canonicalName, it.message) }
+            .map { database.cocktailPreviewDao().insertOrReplaceAll(CocktailPreviewCloudToDatabaseMapper().transform(it)) }
             .subscribe()
 
         return database.cocktailPreviewDao().getAll()

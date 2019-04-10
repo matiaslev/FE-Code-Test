@@ -29,6 +29,6 @@ val appModule = module {
 
     single<CocktailsRepository> { CocktailsRepositoryImpl(get(), get()) }
 
-    viewModel { CocktailpreviewViewModel(get()) }
+    viewModel { CocktailPreviewViewModel(get()) }
 
 }
