@@ -11,6 +11,6 @@ class GetCocktailsPreviewUseCaseTest {
     @Test
     fun `should delegate the work to the repository`() {
         useCaseUnderTest()
-        verify { repository.getCockailsPreview() }
+        verify { repository.syncCockailsPreview() }
     }
 }

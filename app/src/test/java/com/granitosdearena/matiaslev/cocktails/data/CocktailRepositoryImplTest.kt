@@ -1,36 +1,46 @@
 package com.granitosdearena.matiaslev.cocktails.data
 
+import com.granitosdearena.matiaslev.cocktails.CocktailFactory
 import com.granitosdearena.matiaslev.cocktails.data.cloud.CocktailsApi
+import com.granitosdearena.matiaslev.cocktails.data.database.AppDatabase
+import com.granitosdearena.matiaslev.cocktails.data.mappers.CocktailPreviewCloudToDatabaseMapper
+import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import org.junit.Assert.assertEquals
+import io.reactivex.Observable
 import org.junit.Test
 
 class CocktailRepositoryImplTest {
 
     val cocktailsApi = mockk<CocktailsApi>(relaxed = true)
-    val repositoryUnderTest = CocktailsRepositoryImpl(cocktailsApi)
-
-
-    // getCockailsPreview
+    val database = mockk<AppDatabase>(relaxed = true)
+    val repositoryUnderTest = CocktailsRepositoryImpl(cocktailsApi, database)
 
     @Test
     fun `getCockailsPreview should call the getCockailsPreview api`() {
-        repositoryUnderTest.getCockailsPreview()
+        repositoryUnderTest.syncCockailsPreview()
         verify { cocktailsApi.getCockailsPreview() }
     }
 
     @Test
     fun `getCockailsPreview should save the data returned by the api`() {
-        //repositoryUnderTest.saveCocktailsPreview()
-        //verify { roomDatabase.saveCocktailsPreview() }
+        repositoryUnderTest.syncCockailsPreview()
+        val apiResponse = Observable.just(CocktailFactory.newCocktailPreviewCloudClass())
+        every { cocktailsApi.getCockailsPreview() } returns apiResponse
+        val procesedApiResponse = apiResponse.map { CocktailPreviewCloudToDatabaseMapper().transform(it) }
+        procesedApiResponse.map { verify { database.cocktailPreviewDao().insertAll(it) } }
+
     }
 
-    // getCocktail
+    @Test
+    fun `getCockailsPreview should get the data from the database`() {
+        repositoryUnderTest.syncCockailsPreview()
+        verify { database.cocktailPreviewDao().getAll() }
+    }
 
     @Test
     fun `getCocktail should call the getCocktail api`() {
         repositoryUnderTest.getCocktail("1")
-        verify { cocktailsApi.getCocktail("1") }
+        verify { cocktailsApi.getCocktail("1") } // TODO: Not yet
     }
 }

@@ -1,7 +1,8 @@
 package com.granitosdearena.matiaslev.cocktails
 
-import com.granitosdearena.matiaslev.cocktails.data.model.CocktailPreviewData
-import com.granitosdearena.matiaslev.cocktails.data.model.CocktailPreviewDataList
+import com.granitosdearena.matiaslev.cocktails.data.database.model.CocktailPreviewDatabase
+import com.granitosdearena.matiaslev.cocktails.data.cloud.model.CocktailPreviewCloud
+import com.granitosdearena.matiaslev.cocktails.data.cloud.model.CocktailPreviewCloudList
 import com.granitosdearena.matiaslev.cocktails.domain.Cocktail
 import com.granitosdearena.matiaslev.cocktails.domain.CocktailPreview
 
@@ -23,15 +24,20 @@ object CocktailFactory {
 
     fun newCocktailPreview() = CocktailPreview(name, thumb, id)
 
-    fun newCocktailPreviewDataClass() = CocktailPreviewDataList(newCocktailPreviewDataList())
+    fun newCocktailPreviewCloudClass() = CocktailPreviewCloudList(newCocktailPreviewCloudList())
 
-    fun newCocktailPreviewDataList() = listOf(
-        newCocktailPreviewData(),
-        newCocktailPreviewData(),
-        newCocktailPreviewData(),
-        newCocktailPreviewData()
+    fun newCocktailPreviewCloudList() = listOf(
+        newCocktailPreviewCloud(),
+        newCocktailPreviewCloud(),
+        newCocktailPreviewCloud(),
+        newCocktailPreviewCloud()
     )
 
-    fun newCocktailPreviewData() = CocktailPreviewData(name, thumb, id)
+    fun newCocktailPreviewCloud() = CocktailPreviewCloud(name, thumb, id)
+
+    fun newCocktailPreviewDatabaseList() = listOf(newCocktailPreviewDatabase())
+
+    fun newCocktailPreviewDatabase() =
+        CocktailPreviewDatabase(id.toInt(), name, thumb)
 
 }

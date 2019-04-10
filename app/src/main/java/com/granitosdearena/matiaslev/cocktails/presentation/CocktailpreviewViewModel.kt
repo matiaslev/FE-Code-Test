@@ -6,6 +6,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 
 class CocktailpreviewViewModel(private val cocktailPreviewRepository: CocktailsRepository): ViewModel() {
 
-    fun getCockailsPreview() = cocktailPreviewRepository.getCockailsPreview().observeOn(AndroidSchedulers.mainThread())
+    fun getCockailsPreview() = cocktailPreviewRepository.syncCockailsPreview().observeOn(AndroidSchedulers.mainThread())
 
 }
