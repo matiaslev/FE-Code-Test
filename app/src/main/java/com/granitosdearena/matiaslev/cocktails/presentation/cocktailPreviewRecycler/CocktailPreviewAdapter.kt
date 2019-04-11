@@ -1,4 +1,4 @@
-package com.granitosdearena.matiaslev.cocktails.presentation.CocktailPreviewRecycler
+package com.granitosdearena.matiaslev.cocktails.presentation.cocktailPreviewRecycler
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

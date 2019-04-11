@@ -5,7 +5,7 @@ import com.granitosdearena.matiaslev.cocktails.data.CocktailsRepositoryImpl
 import com.granitosdearena.matiaslev.cocktails.data.cloud.CocktailsApi
 import com.granitosdearena.matiaslev.cocktails.data.database.AppDatabase
 import com.granitosdearena.matiaslev.cocktails.domain.CocktailsRepository
-import com.granitosdearena.matiaslev.cocktails.presentation.CocktailPreviewRecycler.CocktailPreviewAdapter
+import com.granitosdearena.matiaslev.cocktails.presentation.cocktailPreviewRecycler.CocktailPreviewAdapter
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
