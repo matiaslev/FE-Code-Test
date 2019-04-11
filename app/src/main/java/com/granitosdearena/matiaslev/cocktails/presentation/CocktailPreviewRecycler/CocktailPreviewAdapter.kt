@@ -9,9 +9,8 @@ import com.granitosdearena.matiaslev.cocktails.domain.CocktailPreview
 
 class CocktailPreviewAdapter: PagedListAdapter<CocktailPreview, CocktailPreviewViewHolder>(DIFF_CALLBACK) {
 
-    private var cocktailsPreviewList = listOf<CocktailPreview>()
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = CocktailPreviewViewHolder(
+        parent.context,
         LayoutInflater.from(parent.context)
             .inflate(R.layout.item_cocktail_preview, parent, false)
     )
