@@ -2,25 +2,35 @@ package com.granitosdearena.matiaslev.cocktails.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.paging.PagedList
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.granitosdearena.matiaslev.cocktails.R
+import com.granitosdearena.matiaslev.cocktails.domain.CocktailPreview
+import com.granitosdearena.matiaslev.cocktails.presentation.CocktailPreviewRecycler.CocktailPreviewAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_cocktail_preview.*
 import org.koin.android.ext.android.get
+import org.koin.android.ext.android.inject
 
 class CocktailPreviewActivity : AppCompatActivity() {
 
-    var disposable: Disposable? = null
+    private var disposable: Disposable? = null
+    private val cocktailPreviewAdapter by inject<CocktailPreviewAdapter>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cocktail_preview)
+
         val cocktailPreviewViewModel: CocktailPreviewViewModel = get()
+
         disposable = cocktailPreviewViewModel.getCockailsPreview()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-            textView.text = it.size.toString()
-        }
+                cocktailPreviewRecycler.adapter = cocktailPreviewAdapter
+                cocktailPreviewRecycler.layoutManager = LinearLayoutManager(this)
+                cocktailPreviewAdapter.submitList(it as PagedList<CocktailPreview>)
+            }
     }
 
     override fun onDestroy() {
