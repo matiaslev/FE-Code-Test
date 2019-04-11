@@ -17,7 +17,7 @@ import io.reactivex.schedulers.Schedulers
 
 class CocktailsRepositoryImpl(val cocktailsApi: CocktailsApi, val database: AppDatabase): CocktailsRepository {
 
-    override fun syncCockailsPreview(): Observable<List<CocktailPreview>> {
+    override fun syncCockailsPreview(): Observable<PagedList<CocktailPreview>> {
         val disposable = cocktailsApi.getCockailsPreview()
             .subscribeOn(Schedulers.io())
             .doOnError { Log.d(CocktailPreviewViewModel::class.java.canonicalName, it.message) }
@@ -28,8 +28,8 @@ class CocktailsRepositoryImpl(val cocktailsApi: CocktailsApi, val database: AppD
             )
 
         return database.cocktailPreviewDao().getAll()
-            .toObservable(10)
             .map { ToCocktailPreviewFromDatabaseMapper().transform(it) }
+            .toObservable(10)
     }
 
     override fun getCocktail(drinkId: String): Cocktail {

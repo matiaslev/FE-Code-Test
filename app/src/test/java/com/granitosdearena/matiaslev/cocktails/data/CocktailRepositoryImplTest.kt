@@ -7,7 +7,7 @@ import com.granitosdearena.matiaslev.cocktails.data.mappers.CocktailPreviewCloud
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import io.reactivex.Observable
+import io.reactivex.Single
 import org.junit.Test
 
 class CocktailRepositoryImplTest {
@@ -25,10 +25,10 @@ class CocktailRepositoryImplTest {
     @Test
     fun `getCockailsPreview should save the data returned by the api`() {
         repositoryUnderTest.syncCockailsPreview()
-        val apiResponse = Observable.just(CocktailFactory.newCocktailPreviewCloudClass())
+        val apiResponse = Single.just(CocktailFactory.newCocktailPreviewCloudClass())
         every { cocktailsApi.getCockailsPreview() } returns apiResponse
-        val procesedApiResponse = apiResponse.map { CocktailPreviewCloudToDatabaseMapper().transform(it) }
-        procesedApiResponse.map { verify { database.cocktailPreviewDao().insertOrReplaceAll(it) } }
+        val processedApiResponse = apiResponse.map { CocktailPreviewCloudToDatabaseMapper().transform(it) }
+        processedApiResponse.map { verify { database.cocktailPreviewDao().insertOrReplaceAll(it) } }
 
     }
 

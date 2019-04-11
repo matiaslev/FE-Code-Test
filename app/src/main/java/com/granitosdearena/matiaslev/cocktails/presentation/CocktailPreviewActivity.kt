@@ -29,7 +29,7 @@ class CocktailPreviewActivity : AppCompatActivity() {
             .subscribe {
                 cocktailPreviewRecycler.adapter = cocktailPreviewAdapter
                 cocktailPreviewRecycler.layoutManager = LinearLayoutManager(this)
-                cocktailPreviewAdapter.submitList(it as PagedList<CocktailPreview>)
+                cocktailPreviewAdapter.submitList(it)
             }
     }
 
