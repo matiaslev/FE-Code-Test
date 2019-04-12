@@ -31,7 +31,7 @@ class CocktailRepositoryImplTest {
         every { cocktailsApi.getCockailsPreview() } returns apiResponse
         val processedApiResponse = apiResponse.map { CocktailPreviewCloudToDatabaseMapper()
             .transform(it) }
-        processedApiResponse.map { verify { database.cocktailPreviewDao().insertOrReplaceAll(it) } }
+        processedApiResponse.map { verify { database.cocktailPreviewDao().insertAllNewOnes(it) } }
 
     }
 

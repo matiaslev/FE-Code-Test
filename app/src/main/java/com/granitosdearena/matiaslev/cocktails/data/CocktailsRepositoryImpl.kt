@@ -23,7 +23,7 @@ class CocktailsRepositoryImpl(val cocktailsApi: CocktailsApi, val database: AppD
         val disposable = cocktailsApi.getCockailsPreview()
             .subscribeOn(Schedulers.io())
             .doOnError { Log.d(CocktailPreviewViewModel::class.java.canonicalName, it.message) }
-            .map { database.cocktailPreviewDao().insertOrReplaceAll(CocktailPreviewCloudToDatabaseMapper().transform(it)) }
+            .map { database.cocktailPreviewDao().insertAllNewOnes(CocktailPreviewCloudToDatabaseMapper().transform(it)) }
             .subscribeBy(
                 onError =  { it.printStackTrace() },
                 onSuccess = {  }

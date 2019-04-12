@@ -23,6 +23,8 @@ class CocktailPreviewViewModel(private val getCocktailsPreviewUseCase: GetCockta
 
 // TODO Improvements
 
+// Card Views for the recycler for have elevation
+
 // THINK ANOTHER WAY TO DISPOSE OBSERVABLE THAT ON THE ON DESTROY FOR THE ACTIVITY
 
 // !!!!optional!!!! room tests

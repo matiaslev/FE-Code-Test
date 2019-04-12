@@ -15,8 +15,8 @@ interface CocktailPreviewDao {
     @Query("SELECT * FROM CocktailPreviewDatabase WHERE idDrink IN (:userIds)")
     fun loadAllByIds(userIds: IntArray): List<CocktailPreviewDatabase>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertOrReplaceAll(cocktailPreviewDatabaseList: List<CocktailPreviewDatabase>)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    fun insertAllNewOnes(cocktailPreviewDatabaseList: List<CocktailPreviewDatabase>)
 
     @Delete
     fun delete(user: CocktailPreviewDatabase)
