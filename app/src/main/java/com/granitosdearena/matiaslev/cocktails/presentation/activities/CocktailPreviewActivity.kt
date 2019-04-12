@@ -1,12 +1,10 @@
-package com.granitosdearena.matiaslev.cocktails.presentation
+package com.granitosdearena.matiaslev.cocktails.presentation.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.granitosdearena.matiaslev.cocktails.R
-import com.granitosdearena.matiaslev.cocktails.domain.CocktailPreview
+import com.granitosdearena.matiaslev.cocktails.presentation.viewModels.CocktailPreviewViewModel
 import com.granitosdearena.matiaslev.cocktails.presentation.cocktailPreviewRecycler.CocktailPreviewAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable

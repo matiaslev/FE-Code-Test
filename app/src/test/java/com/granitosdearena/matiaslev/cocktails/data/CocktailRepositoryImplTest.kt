@@ -3,6 +3,7 @@ package com.granitosdearena.matiaslev.cocktails.data
 import com.granitosdearena.matiaslev.cocktails.CocktailFactory
 import com.granitosdearena.matiaslev.cocktails.data.cloud.CocktailsApi
 import com.granitosdearena.matiaslev.cocktails.data.database.AppDatabase
+import com.granitosdearena.matiaslev.cocktails.data.mappers.cocktail.CocktailCloudToDatabaseMapper
 import com.granitosdearena.matiaslev.cocktails.data.mappers.cocktailPreview.CocktailPreviewCloudToDatabaseMapper
 import io.mockk.every
 import io.mockk.mockk
@@ -12,6 +13,7 @@ import org.junit.Test
 
 class CocktailRepositoryImplTest {
 
+    val id = "1"
     val cocktailsApi = mockk<CocktailsApi>(relaxed = true)
     val database = mockk<AppDatabase>(relaxed = true)
     val repositoryUnderTest = CocktailsRepositoryImpl(cocktailsApi, database)
@@ -43,5 +45,21 @@ class CocktailRepositoryImplTest {
     fun `getCocktail should call the getCocktail api`() {
         repositoryUnderTest.getCocktail("1")
         verify { cocktailsApi.getCocktail("1") }
+    }
+
+    @Test
+    fun `getCocktail should save the data returned by the api`() {
+        repositoryUnderTest.getCocktail(id)
+        val apiResponse = Single.just(CocktailFactory.newCocktailCloudClass())
+        every { cocktailsApi.getCocktail(id) } returns apiResponse
+        val processedApiResponse = apiResponse.map { CocktailCloudToDatabaseMapper()
+            .transform(it.drinks.first()) }
+        processedApiResponse.map { verify { database.cocktailDao().searchCocktailById(id.toInt()) } }
+    }
+
+    @Test
+    fun `getCocktail should get the data from the database`() {
+        repositoryUnderTest.getCocktail(id)
+        verify { database.cocktailDao().searchCocktailById(id.toInt()) }
     }
 }

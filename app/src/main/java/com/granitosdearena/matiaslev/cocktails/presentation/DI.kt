@@ -6,6 +6,8 @@ import com.granitosdearena.matiaslev.cocktails.data.cloud.CocktailsApi
 import com.granitosdearena.matiaslev.cocktails.data.database.AppDatabase
 import com.granitosdearena.matiaslev.cocktails.domain.CocktailsRepository
 import com.granitosdearena.matiaslev.cocktails.presentation.cocktailPreviewRecycler.CocktailPreviewAdapter
+import com.granitosdearena.matiaslev.cocktails.presentation.viewModels.CocktailPreviewViewModel
+import com.granitosdearena.matiaslev.cocktails.presentation.viewModels.CocktailViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -33,5 +35,7 @@ val appModule = module {
     single<CocktailsRepository> { CocktailsRepositoryImpl(get(), get()) }
 
     viewModel { CocktailPreviewViewModel(get()) }
+
+    viewModel { CocktailViewModel(get()) }
 
 }

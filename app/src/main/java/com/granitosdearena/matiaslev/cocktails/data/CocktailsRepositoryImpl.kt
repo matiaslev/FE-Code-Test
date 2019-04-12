@@ -5,16 +5,15 @@ import androidx.paging.PagedList
 import androidx.paging.toObservable
 import com.granitosdearena.matiaslev.cocktails.data.cloud.CocktailsApi
 import com.granitosdearena.matiaslev.cocktails.data.database.AppDatabase
-import com.granitosdearena.matiaslev.cocktails.data.mappers.cocktail.ToCocktailFromDatabaseMapper
 import com.granitosdearena.matiaslev.cocktails.data.mappers.cocktail.CocktailCloudToDatabaseMapper
+import com.granitosdearena.matiaslev.cocktails.data.mappers.cocktail.ToCocktailFromDatabaseMapper
 import com.granitosdearena.matiaslev.cocktails.data.mappers.cocktailPreview.CocktailPreviewCloudToDatabaseMapper
 import com.granitosdearena.matiaslev.cocktails.data.mappers.cocktailPreview.ToCocktailPreviewFromDatabaseMapper
 import com.granitosdearena.matiaslev.cocktails.domain.Cocktail
 import com.granitosdearena.matiaslev.cocktails.domain.CocktailPreview
 import com.granitosdearena.matiaslev.cocktails.domain.CocktailsRepository
-import com.granitosdearena.matiaslev.cocktails.presentation.CocktailPreviewViewModel
+import com.granitosdearena.matiaslev.cocktails.presentation.viewModels.CocktailPreviewViewModel
 import io.reactivex.Observable
-import io.reactivex.Single
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 
@@ -36,10 +35,11 @@ class CocktailsRepositoryImpl(val cocktailsApi: CocktailsApi, val database: AppD
             .toObservable(10)
     }
 
-    override fun getCocktail(drinkId: String): Single<Cocktail> {
+    override fun getCocktail(drinkId: String): Observable<Cocktail> {
         val disposable = cocktailsApi.getCocktail(drinkId)
             .subscribeOn(Schedulers.io())
             .doOnError { Log.d(CocktailPreviewViewModel::class.java.canonicalName, it.message) }
+            .filter { it.drinks.isNotEmpty() }
             .map { database.cocktailDao().insertOrReplace(CocktailCloudToDatabaseMapper().transform(it.drinks.first())) }
             .subscribeBy(
                 onError =  { it.printStackTrace() },

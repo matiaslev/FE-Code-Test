@@ -4,13 +4,11 @@ import com.granitosdearena.matiaslev.cocktails.data.database.model.CocktailDatab
 import com.granitosdearena.matiaslev.cocktails.data.mappers.BaseMapper
 import com.granitosdearena.matiaslev.cocktails.domain.Cocktail
 
-class ToCocktailFromDatabaseMapper: BaseMapper<CocktailDatabase,Cocktail> {
+class ToCocktailFromDatabaseMapper: BaseMapper<CocktailDatabase, Cocktail> {
 
-    override fun transform(input: CocktailDatabase): Cocktail {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun transform(input: CocktailDatabase): Cocktail =
+        Cocktail(input.drinkName, input.drinkThumb, input.drinkId.toString())
 
-    override fun transformToData(input: Cocktail): CocktailDatabase {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun transformToData(input: Cocktail): CocktailDatabase =
+            CocktailDatabase(input.drinkId.toInt(), input.drinkName, input.drinkThumb)
 }

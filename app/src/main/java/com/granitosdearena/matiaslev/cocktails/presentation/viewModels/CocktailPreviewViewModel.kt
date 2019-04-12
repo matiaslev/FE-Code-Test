@@ -1,4 +1,4 @@
-package com.granitosdearena.matiaslev.cocktails.presentation
+package com.granitosdearena.matiaslev.cocktails.presentation.viewModels
 
 import androidx.lifecycle.ViewModel
 import androidx.paging.PagedList
