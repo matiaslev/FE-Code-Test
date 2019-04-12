@@ -1,21 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.activities.CocktailActivity">
+        android:orientation="vertical" >
 
-    <ImageView
-            android:layout_width="0dp"
-            android:layout_height="200dp"
-            app:srcCompat="@drawable/ic_drink_placeholder"
-            android:id="@+id/drinkThumb"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="parent"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:theme="?attr/actionBarTheme"
+            android:minHeight="?attr/actionBarSize"
+            android:id="@+id/toolbar" >
+
+        <ImageView
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_arrow_back"
+                android:id="@+id/backArrow"/>
+
+        <TextView
+                android:text="Drink Name"
+                android:gravity="center_horizontal"
+                android:textColor="@color/colorAccent"
+                android:layout_marginEnd="@dimen/toolbar_title_margin_considering_back_arrow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/toolbarTittle"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:paddingBottom="50dp"
+            tools:context=".presentation.activities.CocktailActivity">
+
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                app:srcCompat="@drawable/ic_drink_placeholder"
+                android:id="@+id/drinkThumb"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

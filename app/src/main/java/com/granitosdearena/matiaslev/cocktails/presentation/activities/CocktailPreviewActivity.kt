@@ -20,6 +20,7 @@ class CocktailPreviewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cocktail_preview)
+        supportActionBar?.title = "Drinks By Mati Lev"
 
         val cocktailPreviewViewModel: CocktailPreviewViewModel = get()
 

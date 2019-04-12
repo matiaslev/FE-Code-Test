@@ -18,7 +18,8 @@ class CocktailPreviewViewHolder(val context: Context, itemView: View): RecyclerV
             .placeholder(R.drawable.ic_drink_placeholder)
             .into(itemView.drinkThumb)
         itemView.setOnClickListener {
-            context.startActivity(CocktailActivity.getCocktailActivityIntent(context, cocktailPreview.drinkId))
+            context.startActivity(CocktailActivity.getCocktailActivityIntent(context,
+                cocktailPreview.drinkId, cocktailPreview.drinkName))
         }
     }
 }

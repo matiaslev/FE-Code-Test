@@ -15,7 +15,7 @@ class CocktailPreviewViewModel(private val getCocktailsPreviewUseCase: GetCockta
 
 // TODO CODE TEST
 
-// DRAW VIEW FOR COCKTAIL
+// DRAW VIEW FOR COCKTAIL with all the fields
 
 // RESPONSE QUESTION FOR THE CODE TEST OVER THE README
 
@@ -25,4 +25,4 @@ class CocktailPreviewViewModel(private val getCocktailsPreviewUseCase: GetCockta
 
 // THINK ANOTHER WAY TO DISPOSE OBSERVABLE THAT ON THE ON DESTROY FOR THE ACTIVITY
 
-// IS POSSIBLE AVOID THE WHITE SPACE WHYLE IMAGE ARE BEING DRAWED BY GLIDE ??
+// !!!!optional!!!! room tests
