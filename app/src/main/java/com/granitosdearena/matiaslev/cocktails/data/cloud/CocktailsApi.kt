@@ -1,6 +1,7 @@
 package com.granitosdearena.matiaslev.cocktails.data.cloud
 
 import com.granitosdearena.matiaslev.cocktails.data.cloud.model.CocktailCloud
+import com.granitosdearena.matiaslev.cocktails.data.cloud.model.CocktailCloudList
 import com.granitosdearena.matiaslev.cocktails.data.cloud.model.CocktailPreviewCloudList
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -13,6 +14,6 @@ interface CocktailsApi {
     fun getCockailsPreview(): Single<CocktailPreviewCloudList>
 
     @GET
-    fun getCocktail(@Path("id") id: String): CocktailCloud
+    fun getCocktail(@Path("id") id: String): Single<CocktailCloudList>
 
 }

@@ -1,4 +1,4 @@
-package com.granitosdearena.matiaslev.cocktails.data.mappers
+package com.granitosdearena.matiaslev.cocktails.data.mappers.cocktailPreview
 
 import com.granitosdearena.matiaslev.cocktails.CocktailFactory
 import com.granitosdearena.matiaslev.cocktails.data.cloud.model.CocktailPreviewCloudList
@@ -8,7 +8,8 @@ import org.junit.Test
 
 class CocktailPreviewCloudToDatabaseMapperTest {
 
-    private val mapperUnderTest = CocktailPreviewCloudToDatabaseMapper()
+    private val mapperUnderTest =
+        CocktailPreviewCloudToDatabaseMapper()
 
     @Test
     fun `transform should get CocktailPreviewDataList and return a list of CocktailPreview`() {

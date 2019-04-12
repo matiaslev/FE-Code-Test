@@ -3,7 +3,7 @@ package com.granitosdearena.matiaslev.cocktails.data
 import com.granitosdearena.matiaslev.cocktails.CocktailFactory
 import com.granitosdearena.matiaslev.cocktails.data.cloud.CocktailsApi
 import com.granitosdearena.matiaslev.cocktails.data.database.AppDatabase
-import com.granitosdearena.matiaslev.cocktails.data.mappers.CocktailPreviewCloudToDatabaseMapper
+import com.granitosdearena.matiaslev.cocktails.data.mappers.cocktailPreview.CocktailPreviewCloudToDatabaseMapper
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -27,7 +27,8 @@ class CocktailRepositoryImplTest {
         repositoryUnderTest.syncCockailsPreview()
         val apiResponse = Single.just(CocktailFactory.newCocktailPreviewCloudClass())
         every { cocktailsApi.getCockailsPreview() } returns apiResponse
-        val processedApiResponse = apiResponse.map { CocktailPreviewCloudToDatabaseMapper().transform(it) }
+        val processedApiResponse = apiResponse.map { CocktailPreviewCloudToDatabaseMapper()
+            .transform(it) }
         processedApiResponse.map { verify { database.cocktailPreviewDao().insertOrReplaceAll(it) } }
 
     }
@@ -41,6 +42,6 @@ class CocktailRepositoryImplTest {
     @Test
     fun `getCocktail should call the getCocktail api`() {
         repositoryUnderTest.getCocktail("1")
-        verify { cocktailsApi.getCocktail("1") } // TODO: Not yet
+        verify { cocktailsApi.getCocktail("1") }
     }
 }
