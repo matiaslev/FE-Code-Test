@@ -5,6 +5,8 @@ import com.granitosdearena.matiaslev.cocktails.data.CocktailsRepositoryImpl
 import com.granitosdearena.matiaslev.cocktails.data.cloud.CocktailsApi
 import com.granitosdearena.matiaslev.cocktails.data.database.AppDatabase
 import com.granitosdearena.matiaslev.cocktails.domain.CocktailsRepository
+import com.granitosdearena.matiaslev.cocktails.domain.GetCocktailUseCase
+import com.granitosdearena.matiaslev.cocktails.domain.GetCocktailsPreviewUseCase
 import com.granitosdearena.matiaslev.cocktails.presentation.cocktailPreviewRecycler.CocktailPreviewAdapter
 import com.granitosdearena.matiaslev.cocktails.presentation.viewModels.CocktailPreviewViewModel
 import com.granitosdearena.matiaslev.cocktails.presentation.viewModels.CocktailViewModel
@@ -33,6 +35,10 @@ val appModule = module {
     single { Room.databaseBuilder(androidContext(), AppDatabase::class.java, "database-name").build() }
 
     single<CocktailsRepository> { CocktailsRepositoryImpl(get(), get()) }
+
+    single { GetCocktailsPreviewUseCase(get()) }
+
+    single { GetCocktailUseCase(get()) }
 
     viewModel { CocktailPreviewViewModel(get()) }
 
