@@ -3,6 +3,7 @@ package com.granitosdearena.matiaslev.cocktails.presentation.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.granitosdearena.matiaslev.cocktails.R
@@ -11,6 +12,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_cocktail.*
 import org.koin.android.ext.android.get
+import java.util.concurrent.TimeUnit
 
 class CocktailActivity : AppCompatActivity() {
 
@@ -53,6 +55,11 @@ class CocktailActivity : AppCompatActivity() {
 
                 ingredientsWithMeasures.text = ingredientsWithMeasuresText
                 instructions.text = it.drinkInstructions
+
+                progressBar.visibility = View.GONE
+                drinkThumb.visibility = View.VISIBLE
+                ingredientsWithMeasures.visibility = View.VISIBLE
+                instructions.visibility = View.VISIBLE
             }
     }
 

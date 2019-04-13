@@ -15,8 +15,6 @@ class CocktailPreviewViewModel(private val getCocktailsPreviewUseCase: GetCockta
 
 // TODO CODE TEST
 
-// LOADING VIEW FOR COCKTAIL
-
 // RESPONSE QUESTION FOR THE CODE TEST OVER THE README
 
 // BONUS SEARCH
