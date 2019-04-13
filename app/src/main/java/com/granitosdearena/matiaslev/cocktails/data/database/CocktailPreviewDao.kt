@@ -16,7 +16,7 @@ interface CocktailPreviewDao {
     fun loadAllByIds(userIds: IntArray): List<CocktailPreviewDatabase>
 
     @Insert(onConflict = OnConflictStrategy.ABORT)
-    fun insertAllNewOnes(cocktailPreviewDatabaseList: List<CocktailPreviewDatabase>)
+    fun insertAll(cocktailPreviewDatabaseList: List<CocktailPreviewDatabase>)
 
     @Delete
     fun delete(user: CocktailPreviewDatabase)

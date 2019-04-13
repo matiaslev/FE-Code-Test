@@ -10,19 +10,26 @@ import com.granitosdearena.matiaslev.cocktails.domain.GetCocktailsPreviewUseCase
 import com.granitosdearena.matiaslev.cocktails.presentation.cocktailPreviewRecycler.CocktailPreviewAdapter
 import com.granitosdearena.matiaslev.cocktails.presentation.viewModels.CocktailPreviewViewModel
 import com.granitosdearena.matiaslev.cocktails.presentation.viewModels.CocktailViewModel
+import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 
 object RetrofitApiFactory {
+    val http = OkHttpClient.Builder()
+        .readTimeout(1, TimeUnit.MINUTES)
+        .build()
+
     val retrofit = Retrofit.Builder()
         .baseUrl("https://www.thecocktaildb.com/api/json/v1/1/")
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+        .client(http)
         .build()
 }
 

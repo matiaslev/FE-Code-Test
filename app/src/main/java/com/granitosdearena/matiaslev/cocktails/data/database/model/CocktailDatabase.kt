@@ -7,5 +7,8 @@ import androidx.room.PrimaryKey
 data class CocktailDatabase(
     @PrimaryKey var drinkId: Int,
     var drinkName: String,
-    var drinkThumb: String
+    var drinkThumb: String,
+    var drinkInstructions: String,
+    var drinkIngredients: List<String>,
+    var drinkMeasures: List<String>
 )

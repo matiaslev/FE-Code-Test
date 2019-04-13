@@ -16,10 +16,4 @@ class CocktailCloudToDatabaseMapperTest {
         assertEquals(CocktailDatabase::class, mapperResult::class)
     }
 
-    @Test
-    fun `transformToData should get CocktailDatabase and return CocktailCloud`() {
-        val mapperResult = mapperUnderTest.transformToData(CocktailFactory.newCocktailDatabase())
-        assertEquals(CocktailCloud::class, mapperResult::class)
-    }
-
 }

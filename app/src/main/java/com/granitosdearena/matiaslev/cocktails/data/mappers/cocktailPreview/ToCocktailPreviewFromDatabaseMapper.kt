@@ -10,6 +10,4 @@ class ToCocktailPreviewFromDatabaseMapper:
     override fun transform(input: CocktailPreviewDatabase): CocktailPreview =
         CocktailPreview(input.drinkName, input.drinkThumb, input.idDrink.toString())
 
-    override fun transformToData(input: CocktailPreview): CocktailPreviewDatabase =
-        CocktailPreviewDatabase(input.drinkId.toInt(), input.drinkName, input.drinkThumb)
 }

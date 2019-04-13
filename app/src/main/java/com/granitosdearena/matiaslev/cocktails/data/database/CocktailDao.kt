@@ -13,7 +13,7 @@ interface CocktailDao {
     @Query("SELECT * FROM CocktailDatabase WHERE drinkId = :drinkId")
     fun searchCocktailById(drinkId: Int): Observable<CocktailDatabase>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertOrReplace(cocktailPreviewDatabaseList: CocktailDatabase)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    fun insert(cocktailPreviewDatabaseList: CocktailDatabase)
 
 }

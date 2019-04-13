@@ -1,10 +1,10 @@
 package com.granitosdearena.matiaslev.cocktails.domain
 
 data class Cocktail(
+    override var drinkId: String = "",
     override var drinkName: String = "",
     override var drinkThumb: String = "",
-    override var drinkId: String = "",
-    val category: String = "",
-    val alcoholic: String = "",
-    val glass: String = ""
+    var drinkInstructions: String,
+    var drinkIngredients: List<String>,
+    var drinkMeasures: List<String>
 ): CocktailPreview(drinkName, drinkThumb, drinkId)

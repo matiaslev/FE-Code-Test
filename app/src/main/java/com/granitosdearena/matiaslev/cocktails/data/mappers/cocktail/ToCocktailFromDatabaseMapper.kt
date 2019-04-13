@@ -6,9 +6,13 @@ import com.granitosdearena.matiaslev.cocktails.domain.Cocktail
 
 class ToCocktailFromDatabaseMapper: BaseMapper<CocktailDatabase, Cocktail> {
 
-    override fun transform(input: CocktailDatabase): Cocktail =
-        Cocktail(input.drinkName, input.drinkThumb, input.drinkId.toString())
+    override fun transform(input: CocktailDatabase): Cocktail = Cocktail(
+        input.drinkId.toString(),
+        input.drinkName,
+        input.drinkThumb,
+        input.drinkInstructions,
+        input.drinkIngredients.filter { it.isNotBlank() },
+        input.drinkMeasures.filter { it.isNotBlank() }
+    )
 
-    override fun transformToData(input: Cocktail): CocktailDatabase =
-            CocktailDatabase(input.drinkId.toInt(), input.drinkName, input.drinkThumb)
 }

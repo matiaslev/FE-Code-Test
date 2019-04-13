@@ -17,10 +17,4 @@ class CocktailPreviewCloudToDatabaseMapperTest {
         assertEquals(CocktailPreviewDatabase::class, mapperResult.first()::class)
     }
 
-    @Test
-    fun `transformToData should get CocktailPreviewDataList and return `() {
-        val mapperResult = mapperUnderTest.transformToData(CocktailFactory.newCocktailPreviewDatabaseList())
-        assertEquals(CocktailPreviewCloudList::class, mapperResult::class)
-    }
-
 }

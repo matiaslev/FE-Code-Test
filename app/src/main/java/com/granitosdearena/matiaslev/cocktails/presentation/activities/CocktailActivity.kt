@@ -43,6 +43,16 @@ class CocktailActivity : AppCompatActivity() {
                     .centerCrop()
                     .placeholder(R.drawable.ic_drink_placeholder)
                     .into(drinkThumb)
+
+
+                // TODO Search a testeable and clean place for this logic
+                var ingredientsWithMeasuresText = ""
+                it.drinkMeasures.forEachIndexed { index, measure ->
+                    ingredientsWithMeasuresText += "$measure - ${it.drinkIngredients[index]} \n"
+                }
+
+                ingredientsWithMeasures.text = ingredientsWithMeasuresText
+                instructions.text = it.drinkInstructions
             }
     }
 

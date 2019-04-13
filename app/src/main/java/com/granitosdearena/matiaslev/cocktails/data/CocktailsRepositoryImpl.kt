@@ -23,7 +23,7 @@ class CocktailsRepositoryImpl(val cocktailsApi: CocktailsApi, val database: AppD
         val disposable = cocktailsApi.getCockailsPreview()
             .subscribeOn(Schedulers.io())
             .doOnError { Log.d(CocktailPreviewViewModel::class.java.canonicalName, it.message) }
-            .map { database.cocktailPreviewDao().insertAllNewOnes(CocktailPreviewCloudToDatabaseMapper().transform(it)) }
+            .map { database.cocktailPreviewDao().insertAll(CocktailPreviewCloudToDatabaseMapper().transform(it)) }
             .subscribeBy(
                 onError =  { it.printStackTrace() },
                 onSuccess = {  }
@@ -40,7 +40,7 @@ class CocktailsRepositoryImpl(val cocktailsApi: CocktailsApi, val database: AppD
             .subscribeOn(Schedulers.io())
             .doOnError { Log.d(CocktailPreviewViewModel::class.java.canonicalName, it.message) }
             .filter { it.drinks.isNotEmpty() }
-            .map { database.cocktailDao().insertOrReplace(CocktailCloudToDatabaseMapper().transform(it.drinks.first())) }
+            .map { database.cocktailDao().insert(CocktailCloudToDatabaseMapper().transform(it.drinks.first())) }
             .subscribeBy(
                 onError =  { it.printStackTrace() },
                 onSuccess = {  }

@@ -15,15 +15,13 @@ class CocktailPreviewViewModel(private val getCocktailsPreviewUseCase: GetCockta
 
 // TODO CODE TEST
 
-// DRAW VIEW FOR COCKTAIL with all the fields
+// LOADING VIEW FOR COCKTAIL
 
 // RESPONSE QUESTION FOR THE CODE TEST OVER THE README
 
 // BONUS SEARCH
 
 // TODO Improvements
-
-// Card Views for the recycler for have elevation
 
 // THINK ANOTHER WAY TO DISPOSE OBSERVABLE THAT ON THE ON DESTROY FOR THE ACTIVITY
 
