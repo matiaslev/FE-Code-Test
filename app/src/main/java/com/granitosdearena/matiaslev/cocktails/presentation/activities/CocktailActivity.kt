@@ -46,21 +46,18 @@ class CocktailActivity : AppCompatActivity() {
                     .placeholder(R.drawable.ic_drink_placeholder)
                     .into(drinkThumb)
 
-
-                // TODO Search a testeable and clean place for this logic
-                var ingredientsWithMeasuresText = ""
-                it.drinkMeasures.forEachIndexed { index, measure ->
-                    ingredientsWithMeasuresText += "$measure - ${it.drinkIngredients[index]} \n"
-                }
-
-                ingredientsWithMeasures.text = ingredientsWithMeasuresText
+                ingredientsWithMeasures.text = it.getIngredientsWithMeasures()
                 instructions.text = it.drinkInstructions
 
-                progressBar.visibility = View.GONE
-                drinkThumb.visibility = View.VISIBLE
-                ingredientsWithMeasures.visibility = View.VISIBLE
-                instructions.visibility = View.VISIBLE
+                setViewVisibilityAsLoaded()
             }
+    }
+
+    private fun setViewVisibilityAsLoaded() {
+        progressBar.visibility = View.GONE
+        drinkThumb.visibility = View.VISIBLE
+        ingredientsWithMeasures.visibility = View.VISIBLE
+        instructions.visibility = View.VISIBLE
     }
 
     override fun onDestroy() {

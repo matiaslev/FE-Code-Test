@@ -5,6 +5,16 @@ data class Cocktail(
     override var drinkName: String = "",
     override var drinkThumb: String = "",
     var drinkInstructions: String,
-    var drinkIngredients: List<String>,
-    var drinkMeasures: List<String>
-): CocktailPreview(drinkName, drinkThumb, drinkId)
+    private var drinkIngredients: List<String>,
+    private var drinkMeasures: List<String>
+): CocktailPreview(drinkName, drinkThumb, drinkId) {
+
+    fun getIngredientsWithMeasures(): String {
+        var ingredientsWithMeasuresText = ""
+        drinkMeasures.forEachIndexed { index, measure ->
+            ingredientsWithMeasuresText += "$measure - ${drinkIngredients[index]} \n"
+        }
+        return ingredientsWithMeasuresText
+    }
+
+}

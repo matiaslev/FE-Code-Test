@@ -11,27 +11,29 @@ import com.granitosdearena.matiaslev.cocktails.domain.CocktailPreview
 
 object CocktailFactory {
 
+    val id = "1"
     val name = "Crazy Cocktail"
     val thumb = "Crazy_Cocktail.jpg"
-    val id = "1"
-
-    fun newCocktail() = Cocktail(name, thumb, id)
-
-    fun newCocktailsPreviewList() = listOf(
-        newCocktailPreview(),
-        newCocktailPreview(),
-        newCocktailPreview(),
-        newCocktailPreview(),
-        newCocktailPreview()
-    )
+    val instruction = "instruction"
+    val ingredient = "ingredient"
+    val ingredientBlank = " "
+    val measure = "measure"
+    val measureBlank = " "
 
     fun newCocktailCloudClass() = CocktailCloudList(newCocktailCloudList())
 
     fun newCocktailCloudList() = listOf(newCocktailCloud())
 
-    fun newCocktailCloud() = CocktailCloud(name, thumb, id)
+    fun newCocktailCloud() = CocktailCloud(id, name, thumb,
+        instruction, ingredient, ingredient, ingredient, ingredient, ingredient, ingredient, ingredient, ingredient,
+        ingredient, ingredient, ingredient, ingredient, ingredient, ingredient, ingredient,
+        measure, measure, measure, measure, measure, measure, measure, measure, measure, measure, measure, measure,
+        measure, measure, measure
+        )
 
-    fun newCocktailDatabase() = CocktailDatabase(id.toInt(), name, thumb)
+    fun newCocktailDatabase() = CocktailDatabase(id.toInt(), name, thumb,
+        instruction, listOf(ingredient, ingredient), listOf(measure, measure)
+    )
 
     fun newCocktailPreview() = CocktailPreview(name, thumb, id)
 
