@@ -35,7 +35,7 @@ object CocktailFactory {
         )
 
     fun newCocktailDatabase() = CocktailDatabase(id.toInt(), name, thumb,
-        instruction, listOf(ingredient, ingredient), listOf(measure, measure)
+        instruction, listOf(ingredient, ingredientBlank, ingredient), listOf(measure, measureBlank ,measure)
     )
 
     fun newCocktailPreview() = CocktailPreview(name, thumb, id)

@@ -16,4 +16,11 @@ class ToCocktailFromDatabaseMapperTest {
         assertEquals(Cocktail::class, mapperResult::class)
     }
 
+    @Test
+    fun `transform should filter blank ingredients and measures`() {
+        val mapperResult = mapperUnderTest.transform(CocktailFactory.newCocktailDatabase())
+        assertEquals(0, mapperResult.drinkIngredients.filter { it.isBlank() }.size)
+        assertEquals(0, mapperResult.drinkMeasures.filter { it.isBlank() }.size)
+    }
+
 }

@@ -5,8 +5,8 @@ data class Cocktail(
     override var drinkName: String = "",
     override var drinkThumb: String = "",
     var drinkInstructions: String,
-    private var drinkIngredients: List<String>,
-    private var drinkMeasures: List<String>
+    var drinkIngredients: List<String>,
+    var drinkMeasures: List<String>
 ): CocktailPreview(drinkName, drinkThumb, drinkId) {
 
     fun getIngredientsWithMeasures(): String {
