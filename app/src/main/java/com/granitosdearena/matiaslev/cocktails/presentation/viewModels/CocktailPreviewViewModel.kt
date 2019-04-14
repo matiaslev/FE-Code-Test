@@ -14,8 +14,6 @@ class CocktailPreviewViewModel(private val getCocktailsPreviewUseCase: GetCockta
 
 // TODO CODE TEST
 
-// RESPONSE QUESTION FOR THE CODE TEST OVER THE README
-
 // BONUS SEARCH
 
 // TODO Improvements
@@ -23,5 +21,3 @@ class CocktailPreviewViewModel(private val getCocktailsPreviewUseCase: GetCockta
 // THINK ANOTHER WAY TO DISPOSE OBSERVABLE THAT ON THE ON DESTROY FOR THE ACTIVITY
 
 // AVOID MAGICK NUMBERS AND HARDCODED STRINGS
-
-// !!!!optional!!!! room tests
