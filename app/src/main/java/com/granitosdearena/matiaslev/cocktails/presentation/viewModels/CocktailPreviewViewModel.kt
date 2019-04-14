@@ -20,8 +20,6 @@ class CocktailPreviewViewModel(private val getCocktailsPreviewUseCase: GetCockta
 
 // TODO Improvements
 
-// INJECT MAPPERS
-
 // THINK ANOTHER WAY TO DISPOSE OBSERVABLE THAT ON THE ON DESTROY FOR THE ACTIVITY
 
 // AVOID MAGICK NUMBERS AND HARDCODED STRINGS

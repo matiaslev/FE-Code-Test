@@ -20,6 +20,9 @@ object CocktailFactory {
     val measure = "measure"
     val measureBlank = " "
 
+    fun newCocktail() = Cocktail(id, name, thumb,
+        instruction, listOf(ingredient, ingredient), listOf(measure, measure))
+
     fun newCocktailCloudClass() = CocktailCloudList(newCocktailCloudList())
 
     fun newCocktailCloudList() = listOf(newCocktailCloud())

@@ -4,7 +4,9 @@ import com.granitosdearena.matiaslev.cocktails.CocktailFactory
 import com.granitosdearena.matiaslev.cocktails.data.cloud.CocktailsApi
 import com.granitosdearena.matiaslev.cocktails.data.database.AppDatabase
 import com.granitosdearena.matiaslev.cocktails.data.mappers.cocktail.CocktailCloudToDatabaseMapper
+import com.granitosdearena.matiaslev.cocktails.data.mappers.cocktail.ToCocktailFromDatabaseMapper
 import com.granitosdearena.matiaslev.cocktails.data.mappers.cocktailPreview.CocktailPreviewCloudToDatabaseMapper
+import com.granitosdearena.matiaslev.cocktails.data.mappers.cocktailPreview.ToCocktailPreviewFromDatabaseMapper
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -16,7 +18,12 @@ class CocktailRepositoryImplTest {
     val id = "1"
     val cocktailsApi = mockk<CocktailsApi>(relaxed = true)
     val database = mockk<AppDatabase>(relaxed = true)
-    val repositoryUnderTest = CocktailsRepositoryImpl(cocktailsApi, database)
+    val cocktailPreviewCloudToDatabaseMapper = mockk<CocktailPreviewCloudToDatabaseMapper>()
+    val cocktailCloudToDatabaseMapper = mockk<CocktailCloudToDatabaseMapper>()
+    val toCocktailPreviewFromDatabaseMapper = mockk<ToCocktailPreviewFromDatabaseMapper>()
+    val toCocktailFromDatabaseMapper = mockk<ToCocktailFromDatabaseMapper>()
+    val repositoryUnderTest = CocktailsRepositoryImpl(cocktailsApi, database, cocktailPreviewCloudToDatabaseMapper,
+        cocktailCloudToDatabaseMapper, toCocktailPreviewFromDatabaseMapper, toCocktailFromDatabaseMapper)
 
     @Test
     fun `getCockailsPreview should call the getCockailsPreview api`() {
@@ -25,14 +32,14 @@ class CocktailRepositoryImplTest {
     }
 
     @Test
-    fun `getCockailsPreview should save the data returned by the api`() {
-        repositoryUnderTest.syncCockailsPreview()
+    fun `getCockailsPreview should insert the data returned by the api`() {
         val apiResponse = Single.just(CocktailFactory.newCocktailPreviewCloudClass())
         every { cocktailsApi.getCockailsPreview() } returns apiResponse
-        val processedApiResponse = apiResponse.map { CocktailPreviewCloudToDatabaseMapper()
-            .transform(it) }
-        processedApiResponse.map { verify { database.cocktailPreviewDao().insertAll(it) } }
+        every { cocktailPreviewCloudToDatabaseMapper.transform(CocktailFactory.newCocktailPreviewCloudClass()) } returns CocktailFactory.newCocktailPreviewDatabaseList()
 
+        repositoryUnderTest.syncCockailsPreview()
+
+        verify { database.cocktailPreviewDao().insertAll(CocktailFactory.newCocktailPreviewDatabaseList()) }
     }
 
     @Test
@@ -43,18 +50,19 @@ class CocktailRepositoryImplTest {
 
     @Test
     fun `getCocktail should call the getCocktail api`() {
-        repositoryUnderTest.getCocktail("1")
-        verify { cocktailsApi.getCocktail("1") }
+        repositoryUnderTest.getCocktail(id)
+        verify { cocktailsApi.getCocktail(id) }
     }
 
     @Test
-    fun `getCocktail should save the data returned by the api`() {
-        repositoryUnderTest.getCocktail(id)
+    fun `getCocktail should insert the data returned by the api`() {
         val apiResponse = Single.just(CocktailFactory.newCocktailCloudClass())
         every { cocktailsApi.getCocktail(id) } returns apiResponse
-        val processedApiResponse = apiResponse.map { CocktailCloudToDatabaseMapper()
-            .transform(it.drinks.first()) }
-        processedApiResponse.map { verify { database.cocktailDao().searchCocktailById(id.toInt()) } }
+        every { cocktailCloudToDatabaseMapper.transform(CocktailFactory.newCocktailCloud()) } returns CocktailFactory.newCocktailDatabase()
+
+        repositoryUnderTest.getCocktail(id)
+
+        verify { database.cocktailDao().insert(CocktailFactory.newCocktailDatabase()) }
     }
 
     @Test

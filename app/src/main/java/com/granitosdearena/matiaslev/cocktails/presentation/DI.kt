@@ -4,6 +4,10 @@ import androidx.room.Room
 import com.granitosdearena.matiaslev.cocktails.data.CocktailsRepositoryImpl
 import com.granitosdearena.matiaslev.cocktails.data.cloud.CocktailsApi
 import com.granitosdearena.matiaslev.cocktails.data.database.AppDatabase
+import com.granitosdearena.matiaslev.cocktails.data.mappers.cocktail.CocktailCloudToDatabaseMapper
+import com.granitosdearena.matiaslev.cocktails.data.mappers.cocktail.ToCocktailFromDatabaseMapper
+import com.granitosdearena.matiaslev.cocktails.data.mappers.cocktailPreview.CocktailPreviewCloudToDatabaseMapper
+import com.granitosdearena.matiaslev.cocktails.data.mappers.cocktailPreview.ToCocktailPreviewFromDatabaseMapper
 import com.granitosdearena.matiaslev.cocktails.domain.CocktailsRepository
 import com.granitosdearena.matiaslev.cocktails.domain.GetCocktailUseCase
 import com.granitosdearena.matiaslev.cocktails.domain.GetCocktailsPreviewUseCase
@@ -41,7 +45,15 @@ val appModule = module {
 
     single { Room.databaseBuilder(androidContext(), AppDatabase::class.java, "database-name").build() }
 
-    single<CocktailsRepository> { CocktailsRepositoryImpl(get(), get()) }
+    single { CocktailPreviewCloudToDatabaseMapper() }
+
+    single { CocktailCloudToDatabaseMapper() }
+
+    single { ToCocktailPreviewFromDatabaseMapper() }
+
+    single { ToCocktailFromDatabaseMapper() }
+
+    single<CocktailsRepository> { CocktailsRepositoryImpl(get(), get(), get(), get(), get(), get()) }
 
     single { GetCocktailsPreviewUseCase(get()) }
 
