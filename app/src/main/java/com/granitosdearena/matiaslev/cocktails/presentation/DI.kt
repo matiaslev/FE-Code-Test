@@ -11,6 +11,7 @@ import com.granitosdearena.matiaslev.cocktails.data.mappers.cocktailPreview.ToCo
 import com.granitosdearena.matiaslev.cocktails.domain.CocktailsRepository
 import com.granitosdearena.matiaslev.cocktails.domain.GetCocktailUseCase
 import com.granitosdearena.matiaslev.cocktails.domain.GetCocktailsPreviewUseCase
+import com.granitosdearena.matiaslev.cocktails.domain.SearchCocktailsPreviewByNameUseCase
 import com.granitosdearena.matiaslev.cocktails.presentation.cocktailPreviewRecycler.CocktailPreviewAdapter
 import com.granitosdearena.matiaslev.cocktails.presentation.viewModels.CocktailPreviewViewModel
 import com.granitosdearena.matiaslev.cocktails.presentation.viewModels.CocktailViewModel
@@ -59,7 +60,9 @@ val appModule = module {
 
     single { GetCocktailUseCase(get()) }
 
-    viewModel { CocktailPreviewViewModel(get()) }
+    single { SearchCocktailsPreviewByNameUseCase(get()) }
+
+    viewModel { CocktailPreviewViewModel(get(), get()) }
 
     viewModel { CocktailViewModel(get()) }
 

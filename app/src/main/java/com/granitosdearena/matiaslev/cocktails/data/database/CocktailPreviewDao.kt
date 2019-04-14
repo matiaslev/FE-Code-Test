@@ -12,6 +12,9 @@ interface CocktailPreviewDao {
     @Query("SELECT * FROM CocktailPreviewDatabase")
     fun getAll(): DataSource.Factory<Int, CocktailPreviewDatabase>
 
+    @Query("SELECT * FROM CocktailPreviewDatabase WHERE drinkName LIKE :name")
+    fun searchCocktailPreviewByName(name: String): DataSource.Factory<Int, CocktailPreviewDatabase>
+
     @Query("SELECT * FROM CocktailPreviewDatabase WHERE idDrink IN (:userIds)")
     fun loadAllByIds(userIds: IntArray): List<CocktailPreviewDatabase>
 

@@ -39,6 +39,11 @@ class CocktailsRepositoryImpl(val cocktailsApi: CocktailsApi,
             .toObservable(10)
     }
 
+    override fun searchCocktailsPreviewByName(name: String): Observable<PagedList<CocktailPreview>> =
+        database.cocktailPreviewDao().searchCocktailPreviewByName("%$name%")
+            .map { toCocktailPreviewFromDatabaseMapper.transform(it) }
+            .toObservable(10)
+
     override fun getCocktail(drinkId: String): Observable<Cocktail> {
         val disposable = cocktailsApi.getCocktail(drinkId)
             .subscribeOn(Schedulers.io())

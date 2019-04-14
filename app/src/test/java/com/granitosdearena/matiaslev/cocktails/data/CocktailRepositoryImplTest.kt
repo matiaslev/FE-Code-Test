@@ -70,4 +70,10 @@ class CocktailRepositoryImplTest {
         repositoryUnderTest.getCocktail(id)
         verify { database.cocktailDao().searchCocktailById(id.toInt()) }
     }
+
+    @Test
+    fun `searchCocktailsPreviewByName should get the names that match to the search from the database`() {
+        repositoryUnderTest.searchCocktailsPreviewByName("Some Name")
+        verify { database.cocktailPreviewDao().searchCocktailPreviewByName("Some Name") }
+    }
 }
