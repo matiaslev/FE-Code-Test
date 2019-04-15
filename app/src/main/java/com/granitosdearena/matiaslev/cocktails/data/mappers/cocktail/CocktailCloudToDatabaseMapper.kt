@@ -17,41 +17,41 @@ class CocktailCloudToDatabaseMapper: BaseMapper<CocktailCloud, CocktailDatabase>
 
     private fun getIngredients(input: CocktailCloud): List<String> {
         val mutableListOfIngredients = mutableListOf<String>()
-        if(input.strIngredient1.isNotEmpty()) mutableListOfIngredients.add(input.strIngredient1)
-        if(input.strIngredient2.isNotEmpty()) mutableListOfIngredients.add(input.strIngredient2)
-        if(input.strIngredient3.isNotEmpty()) mutableListOfIngredients.add(input.strIngredient3)
-        if(input.strIngredient4.isNotEmpty()) mutableListOfIngredients.add(input.strIngredient4)
-        if(input.strIngredient5.isNotEmpty()) mutableListOfIngredients.add(input.strIngredient5)
-        if(input.strIngredient6.isNotEmpty()) mutableListOfIngredients.add(input.strIngredient6)
-        if(input.strIngredient7.isNotEmpty()) mutableListOfIngredients.add(input.strIngredient7)
-        if(input.strIngredient8.isNotEmpty()) mutableListOfIngredients.add(input.strIngredient8)
-        if(input.strIngredient9.isNotEmpty()) mutableListOfIngredients.add(input.strIngredient9)
-        if(input.strIngredient10.isNotEmpty()) mutableListOfIngredients.add(input.strIngredient10)
-        if(input.strIngredient11.isNotEmpty()) mutableListOfIngredients.add(input.strIngredient11)
-        if(input.strIngredient12.isNotEmpty()) mutableListOfIngredients.add(input.strIngredient12)
-        if(input.strIngredient13.isNotEmpty()) mutableListOfIngredients.add(input.strIngredient13)
-        if(input.strIngredient14.isNotEmpty()) mutableListOfIngredients.add(input.strIngredient14)
-        if(input.strIngredient15.isNotEmpty()) mutableListOfIngredients.add(input.strIngredient15)
+        if(!input.strIngredient1.isNullOrEmpty()) input.strIngredient1?.let { mutableListOfIngredients.add(it) }
+        if(!input.strIngredient2.isNullOrEmpty()) input.strIngredient2?.let { mutableListOfIngredients.add(it) }
+        if(!input.strIngredient3.isNullOrEmpty()) input.strIngredient3?.let { mutableListOfIngredients.add(it) }
+        if(!input.strIngredient4.isNullOrEmpty()) input.strIngredient4?.let { mutableListOfIngredients.add(it) }
+        if(!input.strIngredient5.isNullOrEmpty()) input.strIngredient5?.let { mutableListOfIngredients.add(it) }
+        if(!input.strIngredient6.isNullOrEmpty()) input.strIngredient6?.let { mutableListOfIngredients.add(it) }
+        if(!input.strIngredient7.isNullOrEmpty()) input.strIngredient7?.let { mutableListOfIngredients.add(it) }
+        if(!input.strIngredient8.isNullOrEmpty()) input.strIngredient8?.let { mutableListOfIngredients.add(it) }
+        if(!input.strIngredient9.isNullOrEmpty()) input.strIngredient9?.let { mutableListOfIngredients.add(it) }
+        if(!input.strIngredient10.isNullOrEmpty()) input.strIngredient1?.let { mutableListOfIngredients.add(it) }
+        if(!input.strIngredient11.isNullOrEmpty()) input.strIngredient1?.let { mutableListOfIngredients.add(it) }
+        if(!input.strIngredient12.isNullOrEmpty()) input.strIngredient1?.let { mutableListOfIngredients.add(it) }
+        if(!input.strIngredient13.isNullOrEmpty()) input.strIngredient1?.let { mutableListOfIngredients.add(it) }
+        if(!input.strIngredient14.isNullOrEmpty()) input.strIngredient1?.let { mutableListOfIngredients.add(it) }
+        if(!input.strIngredient15.isNullOrEmpty()) input.strIngredient1?.let { mutableListOfIngredients.add(it) }
         return mutableListOfIngredients
     }
 
     private fun getMeasures(input: CocktailCloud): List<String> {
         val mutableListOfMeasures = mutableListOf<String>()
-        if(input.strMeasure1.isNotEmpty()) mutableListOfMeasures.add(input.strMeasure1)
-        if(input.strMeasure2.isNotEmpty()) mutableListOfMeasures.add(input.strMeasure2)
-        if(input.strMeasure3.isNotEmpty()) mutableListOfMeasures.add(input.strMeasure3)
-        if(input.strMeasure4.isNotEmpty()) mutableListOfMeasures.add(input.strMeasure4)
-        if(input.strMeasure5.isNotEmpty()) mutableListOfMeasures.add(input.strMeasure5)
-        if(input.strMeasure6.isNotEmpty()) mutableListOfMeasures.add(input.strMeasure6)
-        if(input.strMeasure7.isNotEmpty()) mutableListOfMeasures.add(input.strMeasure7)
-        if(input.strMeasure8.isNotEmpty()) mutableListOfMeasures.add(input.strMeasure8)
-        if(input.strMeasure9.isNotEmpty()) mutableListOfMeasures.add(input.strMeasure9)
-        if(input.strMeasure10.isNotEmpty()) mutableListOfMeasures.add(input.strMeasure10)
-        if(input.strMeasure11.isNotEmpty()) mutableListOfMeasures.add(input.strMeasure11)
-        if(input.strMeasure12.isNotEmpty()) mutableListOfMeasures.add(input.strMeasure12)
-        if(input.strMeasure13.isNotEmpty()) mutableListOfMeasures.add(input.strMeasure13)
-        if(input.strMeasure14.isNotEmpty()) mutableListOfMeasures.add(input.strMeasure14)
-        if(input.strMeasure15.isNotEmpty()) mutableListOfMeasures.add(input.strMeasure15)
+        if(!input.strMeasure1.isNullOrEmpty()) input.strMeasure1?.let { mutableListOfMeasures.add(it) }
+        if(!input.strMeasure2.isNullOrEmpty()) input.strMeasure2?.let { mutableListOfMeasures.add(it) }
+        if(!input.strMeasure3.isNullOrEmpty()) input.strMeasure3?.let { mutableListOfMeasures.add(it) }
+        if(!input.strMeasure4.isNullOrEmpty()) input.strMeasure4?.let { mutableListOfMeasures.add(it) }
+        if(!input.strMeasure5.isNullOrEmpty()) input.strMeasure5?.let { mutableListOfMeasures.add(it) }
+        if(!input.strMeasure6.isNullOrEmpty()) input.strMeasure6?.let { mutableListOfMeasures.add(it) }
+        if(!input.strMeasure7.isNullOrEmpty()) input.strMeasure7?.let { mutableListOfMeasures.add(it) }
+        if(!input.strMeasure8.isNullOrEmpty()) input.strMeasure8?.let { mutableListOfMeasures.add(it) }
+        if(!input.strMeasure9.isNullOrEmpty()) input.strMeasure9?.let { mutableListOfMeasures.add(it) }
+        if(!input.strMeasure10.isNullOrEmpty()) input.strMeasure10?.let { mutableListOfMeasures.add(it) }
+        if(!input.strMeasure11.isNullOrEmpty()) input.strMeasure11?.let { mutableListOfMeasures.add(it) }
+        if(!input.strMeasure12.isNullOrEmpty()) input.strMeasure12?.let { mutableListOfMeasures.add(it) }
+        if(!input.strMeasure13.isNullOrEmpty()) input.strMeasure13?.let { mutableListOfMeasures.add(it) }
+        if(!input.strMeasure14.isNullOrEmpty()) input.strMeasure14?.let { mutableListOfMeasures.add(it) }
+        if(!input.strMeasure15.isNullOrEmpty()) input.strMeasure15?.let { mutableListOfMeasures.add(it) }
         return mutableListOfMeasures
     }
 }
