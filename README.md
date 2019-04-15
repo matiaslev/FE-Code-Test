@@ -34,6 +34,7 @@ D) Would you like to add any further comments or observations?
 * Tested with mockk
 * With Clean Architecture in mind
 * MVVM for the presentation layer
+* Clean Code
 
 
 ## Overview:
