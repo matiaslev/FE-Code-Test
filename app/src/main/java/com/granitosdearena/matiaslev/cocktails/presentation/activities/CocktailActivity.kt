@@ -7,6 +7,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.granitosdearena.matiaslev.cocktails.R
+import com.granitosdearena.matiaslev.cocktails.presentation.setSafeOnClickListener
 import com.granitosdearena.matiaslev.cocktails.presentation.viewModels.CocktailViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -36,7 +37,7 @@ class CocktailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cocktail)
         toolbarTittle.text = intent.getStringExtra(COCKTAIL_NAME)
-        backArrow.setOnClickListener { onBackPressed() }
+        backArrow.setSafeOnClickListener { onBackPressed() }
 
         val disposable = cocktailViewModel.getCockailById(intent.getStringExtra(COCKTAIL_ID))
             .observeOn(AndroidSchedulers.mainThread())
