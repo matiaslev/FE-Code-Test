@@ -9,14 +9,16 @@ import com.bumptech.glide.Glide
 import com.granitosdearena.matiaslev.cocktails.R
 import com.granitosdearena.matiaslev.cocktails.presentation.viewModels.CocktailViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_cocktail.*
 import org.koin.android.ext.android.get
-import java.util.concurrent.TimeUnit
+import org.koin.android.ext.android.inject
 
 class CocktailActivity : AppCompatActivity() {
 
-    private var disposable: Disposable? = null
+    val cocktailViewModel by inject<CocktailViewModel>()
+    private var disposables = get<CompositeDisposable>()
+
 
     companion object {
         val COCKTAIL_ID = "COCKTAIL_ID"
@@ -36,9 +38,7 @@ class CocktailActivity : AppCompatActivity() {
         toolbarTittle.text = intent.getStringExtra(COCKTAIL_NAME)
         backArrow.setOnClickListener { onBackPressed() }
 
-        val cocktailViewModel: CocktailViewModel = get()
-
-        disposable = cocktailViewModel.getCockailById(intent.getStringExtra(COCKTAIL_ID))
+        val disposable = cocktailViewModel.getCockailById(intent.getStringExtra(COCKTAIL_ID))
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 Glide.with(this).load(it.drinkThumb)
@@ -51,6 +51,7 @@ class CocktailActivity : AppCompatActivity() {
 
                 setViewVisibilityAsLoaded()
             }
+        disposables.add(disposable)
     }
 
     private fun setViewVisibilityAsLoaded() {
@@ -62,6 +63,6 @@ class CocktailActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        disposable?.dispose()
+        disposables.clear()
     }
 }

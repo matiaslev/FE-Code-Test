@@ -15,6 +15,7 @@ import com.granitosdearena.matiaslev.cocktails.domain.SearchCocktailsPreviewByNa
 import com.granitosdearena.matiaslev.cocktails.presentation.cocktailPreviewRecycler.CocktailPreviewAdapter
 import com.granitosdearena.matiaslev.cocktails.presentation.viewModels.CocktailPreviewViewModel
 import com.granitosdearena.matiaslev.cocktails.presentation.viewModels.CocktailViewModel
+import io.reactivex.disposables.CompositeDisposable
 import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.viewmodel.dsl.viewModel
@@ -54,7 +55,9 @@ val appModule = module {
 
     single { ToCocktailFromDatabaseMapper() }
 
-    single<CocktailsRepository> { CocktailsRepositoryImpl(get(), get(), get(), get(), get(), get()) }
+    single { CompositeDisposable() }
+
+    single<CocktailsRepository> { CocktailsRepositoryImpl(get(), get(), get(), get(), get(), get(), get()) }
 
     single { GetCocktailsPreviewUseCase(get()) }
 

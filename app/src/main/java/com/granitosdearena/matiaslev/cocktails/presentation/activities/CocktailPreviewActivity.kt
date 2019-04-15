@@ -5,23 +5,21 @@ import android.view.KeyEvent
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.granitosdearena.matiaslev.cocktails.R
-import com.granitosdearena.matiaslev.cocktails.presentation.viewModels.CocktailPreviewViewModel
 import com.granitosdearena.matiaslev.cocktails.presentation.cocktailPreviewRecycler.CocktailPreviewAdapter
+import com.granitosdearena.matiaslev.cocktails.presentation.viewModels.CocktailPreviewViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_cocktail_preview.*
 import org.koin.android.ext.android.get
 import org.koin.android.ext.android.inject
 
 class CocktailPreviewActivity : AppCompatActivity() {
 
-    private var disposables = CompositeDisposable()
     private val cocktailPreviewAdapter by inject<CocktailPreviewAdapter>()
     private val cocktailPreviewViewModel by inject<CocktailPreviewViewModel>()
+    private var disposables = get<CompositeDisposable>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,14 +36,6 @@ class CocktailPreviewActivity : AppCompatActivity() {
                     searchCocktailsPreviewByName(it.toString())
                 }
             }
-        }
-
-        search.setOnKeyListener { view, keyCode, event ->
-            if ((event.action == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
-                return@setOnKeyListener true
-            }
-            return@setOnKeyListener false
         }
     }
 
@@ -68,10 +58,6 @@ class CocktailPreviewActivity : AppCompatActivity() {
                 cocktailPreviewAdapter.submitList(it)
             }
         disposables.add(disposable)
-    }
-
-    private fun searchByName() {
-
     }
 
     override fun onDestroy() {

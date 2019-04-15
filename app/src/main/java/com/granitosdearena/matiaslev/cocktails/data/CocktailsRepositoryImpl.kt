@@ -14,11 +14,13 @@ import com.granitosdearena.matiaslev.cocktails.domain.CocktailPreview
 import com.granitosdearena.matiaslev.cocktails.domain.CocktailsRepository
 import com.granitosdearena.matiaslev.cocktails.presentation.viewModels.CocktailPreviewViewModel
 import io.reactivex.Observable
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 
 class CocktailsRepositoryImpl(val cocktailsApi: CocktailsApi,
                               val database: AppDatabase,
+                              val disposables: CompositeDisposable,
                               val cocktailPreviewCloudToDatabaseMapper: CocktailPreviewCloudToDatabaseMapper,
                               val cocktailCloudToDatabaseMapper: CocktailCloudToDatabaseMapper,
                               val toCocktailPreviewFromDatabaseMapper: ToCocktailPreviewFromDatabaseMapper,
@@ -33,6 +35,7 @@ class CocktailsRepositoryImpl(val cocktailsApi: CocktailsApi,
                 onError =  { it.printStackTrace() },
                 onSuccess = {  }
             )
+        disposables.add(disposable)
 
         return database.cocktailPreviewDao().getAll()
             .map { toCocktailPreviewFromDatabaseMapper.transform(it) }
@@ -54,6 +57,7 @@ class CocktailsRepositoryImpl(val cocktailsApi: CocktailsApi,
                 onError =  { it.printStackTrace() },
                 onSuccess = {  }
             )
+        disposables.add(disposable)
 
         return database.cocktailDao().searchCocktailById(drinkId.toInt())
             .map { toCocktailFromDatabaseMapper.transform(it) }
