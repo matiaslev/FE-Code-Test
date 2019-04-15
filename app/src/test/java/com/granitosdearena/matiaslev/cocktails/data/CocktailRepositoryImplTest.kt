@@ -11,6 +11,7 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import io.reactivex.Single
+import io.reactivex.disposables.CompositeDisposable
 import org.junit.Test
 
 class CocktailRepositoryImplTest {
@@ -22,7 +23,8 @@ class CocktailRepositoryImplTest {
     val cocktailCloudToDatabaseMapper = mockk<CocktailCloudToDatabaseMapper>()
     val toCocktailPreviewFromDatabaseMapper = mockk<ToCocktailPreviewFromDatabaseMapper>()
     val toCocktailFromDatabaseMapper = mockk<ToCocktailFromDatabaseMapper>()
-    val repositoryUnderTest = CocktailsRepositoryImpl(cocktailsApi, database, cocktailPreviewCloudToDatabaseMapper,
+    val disposables = mockk<CompositeDisposable>(relaxed = true)
+    val repositoryUnderTest = CocktailsRepositoryImpl(cocktailsApi, database, disposables, cocktailPreviewCloudToDatabaseMapper,
         cocktailCloudToDatabaseMapper, toCocktailPreviewFromDatabaseMapper, toCocktailFromDatabaseMapper)
 
     @Test
@@ -72,8 +74,8 @@ class CocktailRepositoryImplTest {
     }
 
     @Test
-    fun `searchCocktailsPreviewByName should get the names that match to the search from the database`() {
+    fun `searchCocktailsPreviewByName should get the names that match to the search from the database with the % prefixes`() {
         repositoryUnderTest.searchCocktailsPreviewByName("Some Name")
-        verify { database.cocktailPreviewDao().searchCocktailPreviewByName("Some Name") }
+        verify { database.cocktailPreviewDao().searchCocktailPreviewByName("%Some Name%") }
     }
 }

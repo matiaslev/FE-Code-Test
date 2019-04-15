@@ -13,10 +13,12 @@ import kotlinx.android.synthetic.main.item_cocktail_preview.view.*
 
 class CocktailPreviewViewHolder(val context: Context, itemView: View): RecyclerView.ViewHolder(itemView) {
 
+    val roundedCorner = context.resources.getDimension(R.dimen.radius_10).toInt()
+
     fun bindTo(cocktailPreview: CocktailPreview?) = cocktailPreview?.let { cocktailPreview ->
         itemView.drinkName.text = cocktailPreview.drinkName
         Glide.with(context).load(cocktailPreview.drinkThumb)
-            .transforms(CenterCrop(), RoundedCorners(10))
+            .transforms(CenterCrop(), RoundedCorners(roundedCorner))
             .placeholder(R.drawable.ic_drink_placeholder)
             .into(itemView.drinkThumb)
         itemView.setOnClickListener {

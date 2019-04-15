@@ -58,6 +58,7 @@ class CocktailActivity : AppCompatActivity() {
         progressBar.visibility = View.GONE
         drinkThumb.visibility = View.VISIBLE
         ingredientsWithMeasures.visibility = View.VISIBLE
+        howToPrepare.visibility = View.VISIBLE
         instructions.visibility = View.VISIBLE
     }
 

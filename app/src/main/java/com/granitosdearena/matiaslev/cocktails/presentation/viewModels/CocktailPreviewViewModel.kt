@@ -18,7 +18,3 @@ class CocktailPreviewViewModel(
         searchCocktailsPreviewByNameUseCase(name)
 
 }
-
-// TODO Improvements
-
-// AVOID MAGICK NUMBERS AND HARDCODED STRINGS
